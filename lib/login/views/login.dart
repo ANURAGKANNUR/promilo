@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:promilo_test/home_screen/views/home_bottom_nav_bar.dart';
 import 'package:promilo_test/login/logic/bloc/login_bloc.dart';
 import 'package:promilo_test/utils/app_colors.dart';
 import 'package:promilo_test/utils/text_styles.dart';
@@ -31,7 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: BlocConsumer<LoginBloc, LoginState>(
               listener: (context, state) {
-                // TODO: implement listener
+                if (state is LoginSuccess) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeNavBar(),
+                      ));
+                }
               },
               builder: (context, state) {
                 return Form(
